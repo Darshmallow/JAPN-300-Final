@@ -1,0 +1,10 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/script.rpy", line 152: choice menuitem expects a non-empty block.
+    "遅くになったので、家に帰ろう":
+                     ^
+
+Ren'Py Version: Ren'Py 8.3.2.24090902
+Wed Nov  6 17:37:12 2024
