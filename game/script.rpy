@@ -9,8 +9,8 @@
 # color のパラメーターを追加すると、キャラクターの名前を色付けできます。
 
 # initialize variables
-$ happiness = 50
-$ preparedness = 50
+default happiness = 50
+default preparedness = 50
 define e = Character('Eileen', color="#c8ffc8")
 
 
@@ -57,8 +57,24 @@ label start:
 label day1:
     "ああ、試験まで五日しかありません。今日は勉強しよう。"
     "あれ？彼女が送信しました。。。えっと、「今晩シメキリの家でパーティーがあるよ。私はちょっと行きたいん、一緒に行きましょう」"
+    menu:
+        "行こうか"
+
+        "絶対に行く！":
+            $ preparedness -= 15
+            $ happiness += 15
+            jump party
+
+        "。。一人で勉強しましょう":
+            $ preparedness += 15
+            $ happiness -= 15
+            e "たくさん勉強した！よかったね"
+label day2:
 
     # return でゲームを終了します。
 
     return
+
+label party:
+    "party"
 
