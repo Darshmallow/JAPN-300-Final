@@ -17,6 +17,9 @@ init:
     image bg home:
         "bg home.jpg"
         zoom 4
+style days is text:
+    size 200
+    font "PottaOne-Regular.ttf"
 
 
 # label ステートメント（文）はゲームの処理をまとめてラベル付けします。
@@ -63,13 +66,16 @@ label start:
 
 label day1:
     #the text can use a lil styling
-    show text "日曜日" at truecenter
+    image Sunday = Text("日曜日", style = "days")
+    show Sunday at truecenter 
     with dissolve
     pause 1
-    hide text
+    hide Sunday
     with dissolve
 
-    scene bg home
+    scene bg home with fade
+    show doryoku happy at right
+    show yuuwaku happy at left
 
     "ああ、試験まで五日しかありません。今日は勉強しよう。"
     "あれ？彼女が送信しました。。。えっと、「今晩シメキリの家でパーティーがあるよ。私はちょっと行きたいん、一緒に行きましょう」"
@@ -81,15 +87,22 @@ label day1:
             $ happiness += 15
             jump party
 
-        "やぱっり一人で勉強しましょう":
+        "やぱっり一人で勉強しよう":
             $ preparedness += 15
             $ happiness -= 15
             d "たくさん勉強した！よかったね"
 
 label day2:
-    scene bg home
+    scene bg home with fade
     show doryoku happy at right
     show yuuwaku happy at left
+
+    image Monday = Text("月曜日", style = "days")   
+    show Monday at truecenter
+    with dissolve
+    pause 1
+    hide Monday
+    with dissolve
 
     y "今晩、コンサートがあるそうだ。好きな歌手も来るので、一緒に行かない？"
     menu:
@@ -97,7 +110,7 @@ label day2:
             $ preparedness -= 15
             $ happiness += 10
             jump concert
-        "やぱっり一人で勉強しましょう":
+        "やぱっり一人で勉強しよう":
             $ preparedness += 15
             $ happiness -= 15
             d "たくさん勉強した！よかったね"
@@ -136,7 +149,6 @@ label party:
             if drank:
                 d "あれ、頭が痛い。。。飲みすぎかもしれない。。。"
                 jump day2 
-                with fade
     d "楽しかった！そして疲れた。家に帰ろう"
 
 label concert:
