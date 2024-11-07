@@ -11,6 +11,8 @@
 # initialize variables
 default happiness = 50
 default preparedness = 50
+default heartBroken = 0
+
 define d = Character('ドリョク', color="#c8ffc8")
 define y = Character('ユウワク', color="#c8ffc8")
 init:
@@ -74,14 +76,13 @@ label day1:
     with dissolve
 
     scene bg home with fade
-    show doryoku happy at right
-    show yuuwaku happy at left
+    show doryoku happy at center
 
     "ああ、試験まで五日しかありません。今日は勉強しよう。"
     "あれ？彼女が送信しました。。。えっと、「今晩シメキリの家でパーティーがあるよ。私はちょっと行きたいん、一緒に行きましょう」"
     menu:
 
-        "絶対に行く！":
+        "楽しそう、行こう！":
             $ preparedness -= 15
             $ happiness += 15
             jump party
@@ -89,6 +90,9 @@ label day1:
         "やぱっり一人で勉強しよう":
             $ preparedness += 15
             $ happiness -= 15
+            $ heartBroken += 1
+            d "試験があるから何にもできないな。。ユウワクは怒れていないでしょう"
+            pause 1
             d "たくさん勉強した！よかったね"
 
 label day2:
@@ -103,7 +107,8 @@ label day2:
     hide Monday
     with dissolve
 
-    y "今晩、コンサートがあるそうだ。好きな歌手も来るので、一緒に行かない？"
+    d "私は決めた。今日は絶対に勉強しようつもり。"
+    y "ええ？でも今晩、コンサートがあるそうだ。好きな歌手も来るので、一緒に行かない？"
     menu:
         "行こう！":
             $ preparedness -= 15
@@ -112,9 +117,24 @@ label day2:
         "やぱっり一人で勉強しよう":
             $ preparedness += 15
             $ happiness -= 15
+            $ heartBroken += 1
+            if (heartBroken >= 2):
+                show yuuwaku sad 
+            y "分かったよ。じゃあ、私一人で行くね。後悔しないで"
+            "ああ、怒っているみたい。試験のあとでプレゼントを買おお。今一番大切なことは期末試験だ"
+            pause 1
             d "たくさん勉強した！よかったね"
 
 label day3:
+    scene bg home with fade
+    show doryoku happy at center
+
+    image Tuesday = Text("火曜日", style = "days")   
+    show Tuesday at truecenter
+    with dissolve
+    pause 1
+    hide Tuesday
+    with dissolve
 
 label day4:
 
@@ -150,6 +170,7 @@ label party:
                 $ happiness -= 10
                 jump day2 
     d "楽しかった！そして疲れた。家に帰ろう"
+    jump day2
 
 label concert:
     scene bg concert
