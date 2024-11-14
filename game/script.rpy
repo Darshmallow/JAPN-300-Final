@@ -15,6 +15,8 @@ default heartBroken = 0
 
 define d = Character('ドリョク', color="#c8ffc8")
 define y = Character('ユウワク', color="#c8ffc8")
+define t = Character('ガイヘン', color="#c8ffc8")
+
 init:
     image bg home:
         "bg home.jpg"
@@ -25,6 +27,13 @@ init:
     image Yuuwaku happy:
         "Yuuwaku happy.png"
         zoom 0.4
+    image Taihen happy:
+        "Taihen happy.png"
+        zoom 0.4
+    image Shimekiri happy:
+        "Shimekiri happy.png"
+        zoom 0.4
+
 style days is text:
     size 200
     font "PottaOne-Regular.ttf"
@@ -75,6 +84,7 @@ label start:
 
 label day1:
     #the text can use a lil styling
+    scene bg home with fade
     image Sunday = Text("日曜日", style = "days")
     show Sunday at truecenter 
     with dissolve
@@ -82,7 +92,6 @@ label day1:
     hide Sunday
     with dissolve
 
-    scene bg home with fade
     show Doryoku happy at center
 
     "ああ、試験まで五日しかありません。今日は勉強しよう。"
@@ -104,15 +113,16 @@ label day1:
 
 label day2:
     scene bg home with fade
-    show Doryoku happy at right
-    show Yuuwaku happy at left
-
     image Monday = Text("月曜日", style = "days")   
     show Monday at truecenter
     with dissolve
     pause 1
     hide Monday
     with dissolve
+
+    show Doryoku happy at right
+    show Yuuwaku happy at left
+
 
     d "私は決めた。今日は絶対に勉強しようつもり。"
     y "ええ？でも今晩、コンサートがあるそうだ。好きな歌手も来るので、一緒に行かない？"
@@ -134,16 +144,29 @@ label day2:
 
 label day3:
     scene bg home with fade
-    show Doryoku happy at center
-
-    image Tuesday = Text("火曜日", style = "days")   
+    image Tuesday = Text("火曜日", style = "days")  
     show Tuesday at truecenter
     with dissolve
     pause 1
     hide Tuesday
     with dissolve
 
+    show Taihen happy at center
+
+    t "ね、試験はもうすぐだが、私はぜんぜんわからない。。。今日一緒に勉強しながら教えてくれない？"
+    menu:
+        "いいよ、勉強しよう！":
+            jump room
+        "今日はちょっと。。。(一人で勉強します)":
+            $ preparedness += 15
+            $ happiness -= 15
+            pause 1
+            d "たくさん勉強した！よかったね"
+            jump day4
+
 label day4:
+    return
+
 
 label day5:
 
@@ -153,6 +176,7 @@ label party:
     scene bg party: 
         xzoom 3
         yzoom 3
+    with fade
     show Doryoku happy at right
     show Yuuwaku happy at left
 
@@ -180,7 +204,7 @@ label party:
     jump day2
 
 label concert:
-    scene bg concert
+    scene bg concert with fade
     show Doryoku happy at right
     show Yuuwaku happy at left
 
@@ -193,3 +217,39 @@ label concert:
         "遅くになったので、家に帰ろう":
             jump day3
 
+label room:
+    scene bg library:
+        xzoom 1.8
+        yzoom 1.8
+    with fade
+    show Taihen happy at left
+    show Doryoku happy at right
+    pause 5
+    t "このかっこいいチックトックリールを見よう"
+    menu:
+        "ううん、練習しなきゃ":
+            $ happiness += 5
+            $ preparedness -= 5
+        "うん、見せて":
+            $ happiness -= 5
+            $ preparedness += 5
+    pause 3
+    t "このおもしろいチックトックリールを見よう"
+    menu:
+        "ううん、練習しなきゃ":
+            $ happiness += 5
+            $ preparedness -= 5
+        "うん、見せて":
+            $ happiness -= 5
+            $ preparedness += 5
+    pause 3
+    t "この人気があるチックトックリールを見よう"
+    menu:
+        "ううん、練習しなきゃ":
+            $ happiness += 5
+            $ preparedness -= 5
+        "うん、見せて":
+            $ happiness -= 5
+            $ preparedness += 5
+    pause 3
+    jump day4

@@ -1,71 +1,24 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 71, in script
-    with dissolve
-Exception: Backslash in filename, use '/' instead: 'fonts\\OFL'
+  File "game/script.rpy", line 210, in script
+    t "このかっこいいチックトックリールを見よう"
+Exception: Sayer 't' is not defined.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 71, in script
-    with dissolve
-  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\ast.py", line 1361, in execute
-    renpy.exports.with_statement(trans, paired=paired)
-  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\exports\statementexports.py", line 257, in with_statement
-    return renpy.game.interface.do_with(trans, paired, clear=clear)
-  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\display\core.py", line 1578, in do_with
-    return self.interact(trans_pause=True,
-  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\display\core.py", line 2215, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
-  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\display\core.py", line 2879, in interact_core
-    self.draw_screen(root_widget, fullscreen_video, (not fullscreen_video) or video_frame_drawn)
-  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\display\core.py", line 1381, in draw_screen
-    surftree = renpy.display.render.render_screen(
-  File "render.pyx", line 486, in renpy.display.render.render_screen
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\display\layout.py", line 903, in render
-    surf = render(child, width, height, cst, cat)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\display\transition.py", line 384, in render
-    top = render(self.new_widget, width, height, st, at)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\display\layout.py", line 903, in render
-    surf = render(child, width, height, cst, cat)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\display\layout.py", line 903, in render
-    surf = render(child, width, height, cst, cat)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\display\transform.py", line 1056, in render
-    return RenderTransform(self).render(width, height, st, at)
-  File "accelerator.pyx", line 994, in renpy.display.accelerator.RenderTransform.render
-  File "accelerator.pyx", line 427, in renpy.display.accelerator.RenderTransform.render_child
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\display\image.py", line 513, in render
-    return wrap_render(self.target, width, height, st, at)
-  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\display\image.py", line 316, in wrap_render
-    rend = render(child, w, h, st, at)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\text\text.py", line 2540, in render
-    virtual_layout = Layout(self, width, height, renders, drawable_res=False, size_only=True)
-  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\text\text.py", line 770, in __init__
-    glyphs = ts.glyphs(s, self)
-  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\text\text.py", line 340, in glyphs
-    fo = font.get_font(self.font, self.size, self.bold, self.italic, 0, self.antialias, self.vertical, self.hinting, layout.oversample, self.shaper, self.instance, self.axis)
-  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\text\font.py", line 745, in get_font
-    face = load_face(fn, shaper)
-  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\text\font.py", line 648, in load_face
-    font_file = renpy.loader.load(fn, directory="fonts")
-  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\loader.py", line 664, in load
-    raise Exception("Backslash in filename, use '/' instead: %r" % name)
-Exception: Backslash in filename, use '/' instead: 'fonts\\OFL'
+  File "game/script.rpy", line 210, in script
+    t "このかっこいいチックトックリールを見よう"
+  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\ast.py", line 2573, in execute
+    Say.execute(self)
+  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\ast.py", line 575, in execute
+    who = eval_who(self.who, self.who_fast)
+  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\ast.py", line 464, in eval_who
+    raise Exception("Sayer '%s' is not defined." % who)
+Exception: Sayer 't' is not defined.
 
 Windows-10-10.0.22631 AMD64
 Ren'Py 8.3.2.24090902
 JAPN 300 Final Project 1.0
-Wed Nov  6 17:59:03 2024
+Thu Nov 14 13:35:21 2024
