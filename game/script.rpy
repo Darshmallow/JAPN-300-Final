@@ -19,9 +19,16 @@ init:
     image bg home:
         "bg home.jpg"
         zoom 4
+    image Doryoku happy:
+        "Doryoku happy.png"
+        zoom 0.4
+    image Yuuwaku happy:
+        "Yuuwaku happy.png"
+        zoom 0.4
 style days is text:
     size 200
     font "PottaOne-Regular.ttf"
+
 
 
 # label ステートメント（文）はゲームの処理をまとめてラベル付けします。
@@ -45,7 +52,7 @@ label start:
     # at center は中央に下揃えで表示します。これは省略しても同じ結果になります。
     # その他に at right、at left などがデフォルトで定義されています。
 
-    show eileen happy at center
+    show Doryoku happy at center
 
     # トランジション（画面遷移効果）を使って表示を画面に反映させます。
     # 台詞を表示するか with None を使うと、トランジション無しで直ちに表示します。
@@ -76,7 +83,7 @@ label day1:
     with dissolve
 
     scene bg home with fade
-    show doryoku happy at center
+    show Doryoku happy at center
 
     "ああ、試験まで五日しかありません。今日は勉強しよう。"
     "あれ？彼女が送信しました。。。えっと、「今晩シメキリの家でパーティーがあるよ。私はちょっと行きたいん、一緒に行きましょう」"
@@ -93,12 +100,12 @@ label day1:
             $ heartBroken += 1
             d "試験があるから何にもできないな。。ユウワクは怒れていないでしょう"
             pause 1
-            d "たくさん勉強した！よかったね"
+            d "でもたくさん勉強した！よかったね"
 
 label day2:
     scene bg home with fade
-    show doryoku happy at right
-    show yuuwaku happy at left
+    show Doryoku happy at right
+    show Yuuwaku happy at left
 
     image Monday = Text("月曜日", style = "days")   
     show Monday at truecenter
@@ -119,15 +126,15 @@ label day2:
             $ happiness -= 15
             $ heartBroken += 1
             if (heartBroken >= 2):
-                show yuuwaku sad 
-            y "分かったよ。じゃあ、私一人で行くね。後悔しないで"
-            "ああ、怒っているみたい。試験のあとでプレゼントを買おお。今一番大切なことは期末試験だ"
+                show Yuuwaku  
+                y "分かったよ。じゃあ、私一人で行くね。後悔しないで"
+                "ああ、怒っているみたい。試験のあとでプレゼントを買おお。今一番大切なことは期末試験だ"
             pause 1
             d "たくさん勉強した！よかったね"
 
 label day3:
     scene bg home with fade
-    show doryoku happy at center
+    show Doryoku happy at center
 
     image Tuesday = Text("火曜日", style = "days")   
     show Tuesday at truecenter
@@ -146,8 +153,8 @@ label party:
     scene bg party: 
         xzoom 3
         yzoom 3
-    show doryoku happy at right
-    show yuuwaku happy at left
+    show Doryoku happy at right
+    show Yuuwaku happy at left
 
     default drank = False
 
@@ -174,8 +181,8 @@ label party:
 
 label concert:
     scene bg concert
-    show doryoku happy at right
-    show yuuwaku happy at left
+    show Doryoku happy at right
+    show Yuuwaku happy at left
 
     d "こんでいるね。楽しかったが、好きな歌手はまだ来てないし、今もう十二時間になった。もうすぐ帰った方がいいかな。"
     menu:
