@@ -2,6 +2,7 @@
 errors listed below, and try again.
 
 
+<<<<<<< HEAD
 File "game/script.rpy", line 111: expected statement.
     shiken: "期末試験を始まります"
           ^
@@ -24,3 +25,11 @@ File "game/script.rpy", line 146: expected statement.
 
 Ren'Py Version: Ren'Py 8.3.2.24090902
 Thu Nov 14 14:49:32 2024
+=======
+File "game/script.rpy", line 23: style property backrgound is not known.
+    backrgound 
+              ^
+
+Ren'Py Version: Ren'Py 8.3.2.24090902
+Wed Nov  6 18:14:58 2024
+>>>>>>> 100aa518c38084b9e60ae8e5d703332f7abd6320

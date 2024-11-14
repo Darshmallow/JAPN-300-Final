@@ -11,9 +11,40 @@
 # initialize variables
 default happiness = 50
 default preparedness = 50
+<<<<<<< HEAD
 define e = Character('Eileen', color="#c8ffc8")
 define shimekiri = Character("シメキリ", color="#c8ffc8")
 define shiken = Character("シケン先生", color="#c8ffc8")
+=======
+default heartBroken = 0
+
+define d = Character('ドリョク', color="#c8ffc8")
+define y = Character('ユウワク', color="#c8ffc8")
+define t = Character('ガイヘン', color="#c8ffc8")
+
+init:
+    image bg home:
+        "bg home.jpg"
+        zoom 4
+    image Doryoku happy:
+        "Doryoku happy.png"
+        zoom 0.4
+    image Yuuwaku happy:
+        "Yuuwaku happy.png"
+        zoom 0.4
+    image Taihen happy:
+        "Taihen happy.png"
+        zoom 0.4
+    image Shimekiri happy:
+        "Shimekiri happy.png"
+        zoom 0.4
+
+style days is text:
+    size 200
+    font "PottaOne-Regular.ttf"
+
+
+>>>>>>> 100aa518c38084b9e60ae8e5d703332f7abd6320
 
 # label ステートメント（文）はゲームの処理をまとめてラベル付けします。
 # ラベル間の移動は jump ステートメントか call ステートメントを使います。
@@ -26,7 +57,7 @@ label start:
     # images ディレクトリーにファイル（ファイル名は "bg room.png" や "bg room.jpg"）
     # を追加することで表示できます。
 
-    scene bg room
+    scene bg home
 
     # スプライト（立ち絵）を表示します。ここではプレースホルダーを使用していますが、
     # images ディレクトリーに "eileen happy.png" などと命名したファイルを追加すると
@@ -36,7 +67,7 @@ label start:
     # at center は中央に下揃えで表示します。これは省略しても同じ結果になります。
     # その他に at right、at left などがデフォルトで定義されています。
 
-    show eileen happy at center
+    show Doryoku happy at center
 
     # トランジション（画面遷移効果）を使って表示を画面に反映させます。
     # 台詞を表示するか with None を使うと、トランジション無しで直ちに表示します。
@@ -51,33 +82,110 @@ label start:
     # 以下は台詞を表示します。
 
 
-    e "私は、ブラン大学の一年生、「ドリョク」と言います。   "
-    e "期末試験まで、あと一週間しかありません。。。"
+    d "私は、ドリョクです！"
+    d "ブラン大学一年生で、たくさんの友達もいて、恋人（ユウワクさん）とも仲がいいです"
+    d "しかし、期末試験がもうすぐ、金曜日にあります。今から勉強をしなければいけませんが、楽しい大学生活もしたいです"
+    d "どうしましょう。。。"
 
 
 label day1:
+    #the text can use a lil styling
+    scene bg home with fade
+    image Sunday = Text("日曜日", style = "days")
+    show Sunday at truecenter 
+    with dissolve
+    pause 1
+    hide Sunday
+    with dissolve
+
+    show Doryoku happy at center
+
     "ああ、試験まで五日しかありません。今日は勉強しよう。"
     "あれ？彼女が送信しました。。。えっと、「今晩シメキリの家でパーティーがあるよ。私はちょっと行きたいん、一緒に行きましょう」"
     menu:
-        "行こうか"
 
-        "絶対に行く！":
+        "楽しそう、行こう！":
             $ preparedness -= 15
             $ happiness += 15
             jump party
 
-        "。。一人で勉強しましょう":
+        "やぱっり一人で勉強しよう":
             $ preparedness += 15
             $ happiness -= 15
-            e "たくさん勉強した！よかったね"
-label day2:
+            $ heartBroken += 1
+            d "試験があるから何にもできないな。。ユウワクは怒れていないでしょう"
+            pause 1
+            d "でもたくさん勉強した！よかったね"
 
-    # return でゲームを終了します。
+label day2:
+    scene bg home with fade
+    image Monday = Text("月曜日", style = "days")   
+    show Monday at truecenter
+    with dissolve
+    pause 1
+    hide Monday
+    with dissolve
+
+    show Doryoku happy at right
+    show Yuuwaku happy at left
+
+
+    d "私は決めた。今日は絶対に勉強しようつもり。"
+    y "ええ？でも今晩、コンサートがあるそうだ。好きな歌手も来るので、一緒に行かない？"
+    menu:
+        "行こう！":
+            $ preparedness -= 15
+            $ happiness += 10
+            jump concert
+        "やぱっり一人で勉強しよう":
+            $ preparedness += 15
+            $ happiness -= 15
+            $ heartBroken += 1
+            if (heartBroken >= 2):
+                show Yuuwaku  
+                y "分かったよ。じゃあ、私一人で行くね。後悔しないで"
+                "ああ、怒っているみたい。試験のあとでプレゼントを買おお。今一番大切なことは期末試験だ"
+            pause 1
+            d "たくさん勉強した！よかったね"
+
+label day3:
+    scene bg home with fade
+    image Tuesday = Text("火曜日", style = "days")  
+    show Tuesday at truecenter
+    with dissolve
+    pause 1
+    hide Tuesday
+    with dissolve
+
+    show Taihen happy at center
+
+    t "ね、試験はもうすぐだが、私はぜんぜんわからない。。。今日一緒に勉強しながら教えてくれない？"
+    menu:
+        "いいよ、勉強しよう！":
+            jump room
+        "今日はちょっと。。。(一人で勉強します)":
+            $ preparedness += 15
+            $ happiness -= 15
+            pause 1
+            d "たくさん勉強した！よかったね"
+            jump day4
+
+label day4:
+    return
+
+
+label day5:
 
 
 label party:
-    "party"
+    scene bg party: 
+        xzoom 3
+        yzoom 3
+    with fade
+    show Doryoku happy at right
+    show Yuuwaku happy at left
 
+<<<<<<< HEAD
 
 label day4:
     shimekiri "明日は期末試験の日だ！準備をしなければいけないんだ。そして、今日勉強しよう。え？"
@@ -165,3 +273,78 @@ label end:
             "受からなかったが、学校以外にも色々なことをしました。"
         else:
             "受からなかった"
+=======
+    default drank = False
+
+    d "わああ、人が多すぎだ。あそこにシメキリがいるね、お酒を飲んでみたい。"
+    menu:
+        "お酒を飲もう":
+            d "いい感じ！"
+            $ drank = True
+        "ユウワクと話そう":
+            y "ね、聞いた？あの子は東大から来たよ"
+            d "え、すごいんだ"
+    y "そこで色々な人が踊っているな。あ、これはドリョクくん大好きな歌でしょう。"
+    menu:
+        "一緒に踊りましょう":
+            "（踊っている）"
+        "もっとお酒を飲もう":
+            d "お酒は最高だ！"
+            if drank:
+                d "あれ、頭が痛い。。。飲みすぎかもしれない。。。"
+                $ happiness -= 10
+                jump day2 
+    d "楽しかった！そして疲れた。家に帰ろう"
+    jump day2
+
+label concert:
+    scene bg concert with fade
+    show Doryoku happy at right
+    show Yuuwaku happy at left
+
+    d "こんでいるね。楽しかったが、好きな歌手はまだ来てないし、今もう十二時間になった。もうすぐ帰った方がいいかな。"
+    menu:
+        "好きな歌手を待とう":
+            $ happiness += 20
+            $ preparedness -= 5
+            d "出た！私の好きな歌手。いい歌を聞いて感動した。"
+        "遅くになったので、家に帰ろう":
+            jump day3
+
+label room:
+    scene bg library:
+        xzoom 1.8
+        yzoom 1.8
+    with fade
+    show Taihen happy at left
+    show Doryoku happy at right
+    pause 5
+    t "このかっこいいチックトックリールを見よう"
+    menu:
+        "ううん、練習しなきゃ":
+            $ happiness += 5
+            $ preparedness -= 5
+        "うん、見せて":
+            $ happiness -= 5
+            $ preparedness += 5
+    pause 3
+    t "このおもしろいチックトックリールを見よう"
+    menu:
+        "ううん、練習しなきゃ":
+            $ happiness += 5
+            $ preparedness -= 5
+        "うん、見せて":
+            $ happiness -= 5
+            $ preparedness += 5
+    pause 3
+    t "この人気があるチックトックリールを見よう"
+    menu:
+        "ううん、練習しなきゃ":
+            $ happiness += 5
+            $ preparedness -= 5
+        "うん、見せて":
+            $ happiness -= 5
+            $ preparedness += 5
+    pause 3
+    jump day4
+>>>>>>> 100aa518c38084b9e60ae8e5d703332f7abd6320
