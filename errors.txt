@@ -1,0 +1,26 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/script.rpy", line 111: expected statement.
+    shiken: "期末試験を始まります"
+          ^
+
+File "game/script.rpy", line 113: expected statement.
+    shiken: "龜の読み方は？"
+          ^
+
+File "game/script.rpy", line 124: expected statement.
+    shiken: "ADD HARD QUESTION"
+          ^
+
+File "game/script.rpy", line 135: expected statement.
+    shiken: "ADD MEDIUM QUESTION"
+          ^
+
+File "game/script.rpy", line 146: expected statement.
+    shiken: "1 + 1 ＝ 何"
+          ^
+
+Ren'Py Version: Ren'Py 8.3.2.24090902
+Thu Nov 14 14:49:32 2024

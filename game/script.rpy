@@ -12,7 +12,8 @@
 default happiness = 50
 default preparedness = 50
 define e = Character('Eileen', color="#c8ffc8")
-
+define shimekiri = Character("シメキリ", color="#c8ffc8")
+define shiken = Character("シケン先生", color="#c8ffc8")
 
 # label ステートメント（文）はゲームの処理をまとめてラベル付けします。
 # ラベル間の移動は jump ステートメントか call ステートメントを使います。
@@ -73,8 +74,94 @@ label day2:
 
     # return でゲームを終了します。
 
-    return
 
 label party:
     "party"
 
+
+label day4:
+    shimekiri "明日は期末試験の日だ！準備をしなければいけないんだ。そして、今日勉強しよう。え？"
+    "今日、シメキリと一緒に勉強したい。どうしよう？"
+
+    menu:
+        "シメキリさんと勉強する":
+            $ preparedness += 30
+            $ loops = 0
+            label loop:
+                shimekiri "この問題を見て!"
+                $ loops += 1
+                menu:
+                    "ううん":
+                        $ preparedness -= 1
+                        $ happiness += 1
+                    "うん":
+                        $ happiness += 1
+                        $ preparedness += 2
+                if loops == 10:
+                    jump day5
+                jump loop
+            jump day5
+
+        "一人で勉強する":
+            $ preparedness += 15*(happiness/100)
+            $ happiness -= 10
+
+label day5:
+    "期末試験（きまつしけん） が来ましたああああああ！"
+    shiken "期末試験を始まります"
+    if preparedness < 10:
+        shiken "龜の読み方は？"
+        menu:
+            "知らない":
+                $ ans = True
+            "読めない":
+                $ ans = False
+            "わからない":
+                $ ans = False
+            "できない":
+                $ ans = False
+    elif preparedness < 20:
+        shiken "ADD HARD QUESTION"
+        menu:
+            "知らない":
+                $ ans = False
+            "読めない":
+                $ ans = False
+            "できない":
+                $ ans = False
+            "わからない":
+                $ ans = True
+    elif preparedness < 30:
+        shiken "ADD MEDIUM QUESTION"
+        menu:
+            "2x^2 + c":
+                $ ans = True
+            "x^2":
+                $ ans = False
+            "x":
+                $ ans = False
+            "2x^2":
+                $ ans = False
+    else:
+        shiken "1 + 1 ＝ 何"
+        menu:
+            "3":
+                $ ans = False
+            "5":
+                $ ans = False
+            "2":
+                $ ans = True
+            "1":
+                $ ans = False
+
+label end:
+    if ans:
+        if happiness < 15:
+            "受かった。。。でも友達がわかれたし、かなしくなったし、割に会いましたか？"
+        else:
+            "受かった！おめでとうございます。"
+    else:
+        if happiness > 20:
+            "受からなかったが、学校以外にも色々なことをしました。"
+        else:
+            "受からなかった"
