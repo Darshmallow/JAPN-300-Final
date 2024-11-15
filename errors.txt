@@ -2,9 +2,43 @@
 errors listed below, and try again.
 
 
+<<<<<<< HEAD
 File "game/script.rpy", line 358: choice menuitem expects a non-empty block.
     "ここで止める":
              ^
 
 Ren'Py Version: Ren'Py 8.3.2.24090902
 Thu Nov 14 17:28:54 2024
+=======
+<<<<<<< HEAD
+File "game/script.rpy", line 111: expected statement.
+    shiken: "期末試験を始まります"
+          ^
+
+File "game/script.rpy", line 113: expected statement.
+    shiken: "龜の読み方は？"
+          ^
+
+File "game/script.rpy", line 124: expected statement.
+    shiken: "ADD HARD QUESTION"
+          ^
+
+File "game/script.rpy", line 135: expected statement.
+    shiken: "ADD MEDIUM QUESTION"
+          ^
+
+File "game/script.rpy", line 146: expected statement.
+    shiken: "1 + 1 ＝ 何"
+          ^
+
+Ren'Py Version: Ren'Py 8.3.2.24090902
+Thu Nov 14 14:49:32 2024
+=======
+File "game/script.rpy", line 23: style property backrgound is not known.
+    backrgound 
+              ^
+
+Ren'Py Version: Ren'Py 8.3.2.24090902
+Wed Nov  6 18:14:58 2024
+>>>>>>> 100aa518c38084b9e60ae8e5d703332f7abd6320
+>>>>>>> 272b92c9b29326ccf7d326ac9d7d7996b07b5b23
