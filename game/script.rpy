@@ -16,6 +16,8 @@ default heartBroken = 0
 define d = Character('ドリョク', color="#c8ffc8")
 define y = Character('ユウワク', color="#c8ffc8")
 define t = Character('ガイヘン', color="#c8ffc8")
+define shimekiri = Character("シメキリ", color="#c8ffc8")
+define shiken = Character("シケン先生", color="#c8ffc8")
 
 init:
     image bg home:
@@ -157,20 +159,104 @@ label day3:
     menu:
         "いいよ、勉強しよう！":
             jump room
-        "今日はちょっと。。。(一人で勉強します)":
+        "今日はちょっと。。。(一人で勉強しよう)":
             $ preparedness += 15
             $ happiness -= 15
             pause 1
             d "たくさん勉強した！よかったね"
-            jump day4
+    
+    jump day4
 
 label day4:
-    return
+    scene bg home with fade
+    image Wednesday = Text("水曜日", style = "days")  
+    show Wednesday at truecenter
+    with dissolve
+    pause 1
+    hide Wednesday
+    with dissolve
+
+    show Doryoku happy at center
+
+    d "期末試験をもうパスした人がいるね、羨ましいなあ。外でちょっと騒音が聞こえる。何かあったか。だれがドアをノックしている"
+    pause 1
+    show shimekiri at right
+    shimekiri "ねね、ユウワクと一緒にスマブラをしたい。超楽しいよ"
+    menu: 
+        "ユウワク、シメキリと一緒にスマブラをしよう":
+            $ preparedness -= 15
+            $ happiness += 10
+            jump game
+        "一人で勉強しよう":
+            $ preparedness += 15
+            $ happiness -= 15
+            pause 1
+            d "たくさん勉強した！よかったね"
 
 
 label day5:
+    scene bg home with fade
+    image Thursday = Text("木曜日", style = "days")  
+    show Thursday at truecenter
+    with dissolve
+    pause 1
+    hide Thursday
+    with dissolve
 
-    return
+    show Doryoku happy at right
+    show Shimekiri happy at left
+
+    shimekiri "明日は期末試験の日だ！準備をしなければいけないんだ。そして、今日勉強しよう。え？"
+    "今日、シメキリと一緒に勉強したい。どうしよう？"
+
+    menu:
+        "シメキリさんと勉強する":
+            $ preparedness += 30
+            $ happiness -= 10
+            jump studyRoom
+
+        "一人で勉強する":
+            $ preparedness += 15*(happiness/100)
+            $ happiness -= 10
+    jump day5
+    
+
+label day6:
+    scene bg home with fade
+    image Friday = Text("金曜日", style = "days")  
+    show Friday at truecenter
+    with dissolve
+    pause 1
+    hide Friday
+    with dissolve
+
+    show Doryoku happy at center
+    "今日は期末試験だ！"
+    menu:
+        "試験の場所に行こう":
+            jump test
+
+label end:
+    scene bg home with fade
+
+    show Doryoku happy at center
+    show Yuuwaku happy at left
+    show Taihen happy at right
+
+    d "緊張している。。今日は試験結果を出すの日だ"
+    if ans:
+        if happiness < 15:
+            "受かった。。。でも友達がわかれたし、かなしくなったし、割に会いましたか？"
+        else:
+            "受かった！おめでとうございます。"
+    else:
+        if happiness > 20:
+            "受からなかったが、学校以外にも色々なことをしました。"
+        else:
+            "受からなかった"
+    default drank = False
+    jump gameEnd
+
 
 label party:
     scene bg party: 
@@ -179,8 +265,6 @@ label party:
     with fade
     show Doryoku happy at right
     show Yuuwaku happy at left
-
-    default drank = False
 
     d "わああ、人が多すぎだ。あそこにシメキリがいるね、お酒を飲んでみたい。"
     menu:
@@ -216,6 +300,7 @@ label concert:
             d "出た！私の好きな歌手。いい歌を聞いて感動した。"
         "遅くになったので、家に帰ろう":
             jump day3
+    jump day3
 
 label room:
     scene bg library:
@@ -227,29 +312,117 @@ label room:
     pause 5
     t "このかっこいいチックトックリールを見よう"
     menu:
-        "ううん、練習しなきゃ":
+        "ううん、勉強しなきゃ":
             $ happiness += 5
             $ preparedness -= 5
         "うん、見せて":
             $ happiness -= 5
             $ preparedness += 5
-    pause 3
+    pause 2
     t "このおもしろいチックトックリールを見よう"
     menu:
-        "ううん、練習しなきゃ":
+        "ううん、勉強しなきゃ":
             $ happiness += 5
             $ preparedness -= 5
         "うん、見せて":
             $ happiness -= 5
             $ preparedness += 5
-    pause 3
+    pause 2
     t "この人気があるチックトックリールを見よう"
     menu:
-        "ううん、練習しなきゃ":
+        "ううん、勉強しなきゃ":
             $ happiness += 5
             $ preparedness -= 5
         "うん、見せて":
             $ happiness -= 5
             $ preparedness += 5
-    pause 3
+    pause 2
     jump day4
+
+label game:
+    scene bg lounge with fade
+    show Shimekiri happy at left
+    show Doryoku happy at center
+    show Yuuwaku happy at right
+
+    "（ゲームが進行中）"
+    "負けた！もう一回しましょうか？"
+    menu:
+        "うん":
+            d "もう一回！今度は絶対に勝ちます"
+            $ happiness += 10
+            $ preparedness -= 10
+        "ここで止める":
+            d "勉強しなければいけない。みんな、またあした！"
+            $ preparedness += 5
+    jump day5
+
+label studyRoom:
+    scene bg library:
+        xzoom 1.8
+        yzoom 1.8
+    with fade
+    show Shimekiri happy at left
+    show Doryoku happy at right
+
+    $ loops = 0
+    label loop:
+        shimekiri "この問題を見て!"
+        $ loops += 1
+        menu:
+            "ううん":
+                $ preparedness -= 2
+                $ happiness += 2
+                        
+            "うん":
+                $ happiness += 2
+                $ preparedness += 4
+                shimekiri "まず、そうしよう。かっこいい問題でしょう？"
+                d "あ、すごい！この問題はとても簡単になった！"
+        if loops == 5:
+            jump day6
+    jump loop
+
+label test:
+    scene bg classroom with fade
+    show shiken at center
+
+    shiken "期末試験を始まります"
+    if preparedness < 30:
+        shiken "龜の読み方は？"
+        menu:
+            "知らない":
+                $ ans = True
+            "読めない":
+                $ ans = False
+            "わからない":
+                $ ans = False
+            "できない":
+                $ ans = False
+
+    elif preparedness < 60:
+        shiken "∫4x dx = 何"
+        menu:
+            "2x^2 + C":
+                $ ans = True
+            "x^2":
+                $ ans = False
+            "x":
+                $ ans = False
+            "2x^2":
+                $ ans = False
+    else:
+        shiken "1 + 1 ＝ 何"
+        menu:
+            "3":
+                $ ans = False
+            "5":
+                $ ans = False
+            "2":
+                $ ans = True
+            "1":
+                $ ans = False
+    jump end
+
+label gameEnd:
+    $ MainMenu(confirm=False)()
