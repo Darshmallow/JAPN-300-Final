@@ -110,6 +110,7 @@ label day1:
             $ happiness -= 15
             $ heartBroken += 1
             d "試験があるから何にもできないな。。ユウワクは怒れていないでしょう"
+            d "（勉強している）"
             pause 1
             d "でもたくさん勉強した！よかったね"
 
@@ -141,6 +142,7 @@ label day2:
                 show Yuuwaku  
                 y "分かったよ。じゃあ、私一人で行くね。後悔しないで"
                 "ああ、怒っているみたい。試験のあとでプレゼントを買おお。今一番大切なことは期末試験だ"
+            d "（勉強している）"
             pause 1
             d "たくさん勉強した！よかったね"
 
@@ -162,6 +164,7 @@ label day3:
         "今日はちょっと。。。(一人で勉強しよう)":
             $ preparedness += 15
             $ happiness -= 15
+            d "（勉強している）"
             pause 1
             d "たくさん勉強した！よかったね"
     
@@ -190,6 +193,7 @@ label day4:
         "一人で勉強しよう":
             $ preparedness += 15
             $ happiness -= 15
+            d "（勉強している）"
             pause 1
             d "たくさん勉強した！よかったね"
 
@@ -218,6 +222,9 @@ label day5:
         "一人で勉強する":
             $ preparedness += 15*(happiness/100)
             $ happiness -= 10
+        d "（勉強している）"
+            pause 1
+            d "たくさん勉強した！よかったね" 
     jump day6
     
 
