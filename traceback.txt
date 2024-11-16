@@ -1,46 +1,32 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-<<<<<<< HEAD
-  File "game/script.rpy", line 84, in script
-    シメキリ　"明日は期末試験の日だ！準備をしなければいけないんだ。そして、今日勉強しよう。え？"
-Exception: Sayer 'シメキリ' is not defined.
-=======
-  File "game/script.rpy", line 210, in script
-    t "このかっこいいチックトックリールを見よう"
-Exception: Sayer 't' is not defined.
->>>>>>> 100aa518c38084b9e60ae8e5d703332f7abd6320
+  File "renpy/common/00start.rpy", line 193, in script
+    python:
+  File "renpy/common/00start.rpy", line 194, in <module>
+    renpy.execute_default_statement(True)
+  File "game/script.rpy", line 267, in execute_default
+    default drank = False
+Exception: store.drank is being given a default a second time.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-<<<<<<< HEAD
-  File "game/script.rpy", line 84, in script
-    シメキリ　"明日は期末試験の日だ！準備をしなければいけないんだ。そして、今日勉強しよう。え？"
-  File "/Users/camilo/Documents/Brown/Sophomore/japn300/renpy-8.3.2-sdk/renpy/ast.py", line 2573, in execute
-    Say.execute(self)
-  File "/Users/camilo/Documents/Brown/Sophomore/japn300/renpy-8.3.2-sdk/renpy/ast.py", line 575, in execute
-    who = eval_who(self.who, self.who_fast)
-  File "/Users/camilo/Documents/Brown/Sophomore/japn300/renpy-8.3.2-sdk/renpy/ast.py", line 464, in eval_who
-    raise Exception("Sayer '%s' is not defined." % who)
-Exception: Sayer 'シメキリ' is not defined.
-=======
-  File "game/script.rpy", line 210, in script
-    t "このかっこいいチックトックリールを見よう"
-  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\ast.py", line 2573, in execute
-    Say.execute(self)
-  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\ast.py", line 575, in execute
-    who = eval_who(self.who, self.who_fast)
-  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\ast.py", line 464, in eval_who
-    raise Exception("Sayer '%s' is not defined." % who)
-Exception: Sayer 't' is not defined.
->>>>>>> 100aa518c38084b9e60ae8e5d703332f7abd6320
+  File "renpy/common/00start.rpy", line 193, in script
+    python:
+  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\ast.py", line 821, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\python.py", line 1178, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "renpy/common/00start.rpy", line 194, in <module>
+    renpy.execute_default_statement(True)
+  File "C:\Users\alice\Downloads\renpy-8.3.2-sdk\renpy-8.3.2-sdk\renpy\exports\statementexports.py", line 372, in execute_default_statement
+    i.execute_default(start)
+  File "game/script.rpy", line 267, in execute_default
+    default drank = False
+Exception: store.drank is being given a default a second time.
 
-macOS-14.6.1-arm64-arm-64bit arm64
+Windows-10-10.0.22631 AMD64
 Ren'Py 8.3.2.24090902
 JAPN 300 Final Project 1.0
-<<<<<<< HEAD
-Wed Nov 13 17:03:42 2024
-=======
-Thu Nov 14 13:35:21 2024
->>>>>>> 100aa518c38084b9e60ae8e5d703332f7abd6320
+Sat Nov 16 00:14:01 2024
