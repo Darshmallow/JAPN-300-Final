@@ -269,6 +269,7 @@ label party:
     scene bg party: 
         xzoom 1
         yzoom 1
+    with fade
     show Doryoku happy at right
     show Yuuwaku happy at left
 
@@ -289,8 +290,9 @@ label party:
             d "お酒は最高だ！"
             if drank:
                 d "あれ、頭が痛い。。。飲みすぎかもしれない。。。"
+                y "大丈夫？顔色が悪い。ね、ドリョク、聞こえる？"
+                d "すべてが消え去っていく。。。"
                 jump day2 
-                with fade
     d "楽しかった！そして疲れた。家に帰ろう"
     jump day2
 
@@ -300,7 +302,9 @@ label concert:
     show Doryoku happy at right
     show Yuuwaku happy at left
 
-    d "こんでいるね。楽しかったが、好きな歌手はまだ来てないし、今もう十二時間になった。もうすぐ帰った方がいいかな。"
+    y "こんでいるね、みんあエネルギーがたくさんある。音楽と踊りましょう！"
+    pause 1
+    d "楽しかったが、好きな歌手はまだ来てないし、今もう十二時間になった。もうすぐ帰った方がいいかな。"
     menu:
         "好きな歌手を待とう":
             $ happiness += 20
@@ -318,6 +322,7 @@ label room:
     show Taihen happy at left
     show Doryoku happy at right
     pause 2
+
     t "このかっこいいチックトックリールを見よう"
     menu:
         "ううん、勉強しなきゃ":
@@ -346,7 +351,8 @@ label room:
             $ preparedness += 2
     pause 1
     t "今日は楽しかったぜ。そろそろ帰ろう"
-    d "あ、はい"
+    d "あ、はい。じゃ、またね"
+    "ずっと図書館にいっても、何も習わないな。。。"
     jump day4
 
 label game:
