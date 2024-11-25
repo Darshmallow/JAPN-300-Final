@@ -2,11 +2,9 @@
 errors listed below, and try again.
 
 
-The label end is defined twice, at File "game/script.rpy", line 239:
-label end:
-and File "game/script.rpy", line 270:
-label end:
-
+File "game/script.rpy", line 226: Line is indented, but the preceding say menuitem statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    pause 1
+    ^
 
 Ren'Py Version: Ren'Py 8.3.2.24090902
-Fri Nov 15 09:29:16 2024
+Sun Nov 17 20:05:43 2024

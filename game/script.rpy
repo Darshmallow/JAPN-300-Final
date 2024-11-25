@@ -79,8 +79,8 @@ label start:
 
 
     d "私は、ドリョクです！"
-    d "ブラン大学一年生で、たくさんの友達もいて、恋人（ユウワクさん）とも仲がいいです"
-    d "しかし、期末試験がもうすぐ、金曜日にあります。今から勉強をしなければいけませんが、楽しい大学生活もしたいです"
+    d "ブラン大学一年生で、たくさんの友達もいて、恋人（ユウワク）とも仲がいいです"
+    d "しかし、期末試験がもうすぐ、金曜日にある。今から勉強をしなければいけないが、楽しい大学生活もしたい"
     d "どうしましょう。。。"
 
 
@@ -96,8 +96,8 @@ label day1:
 
     show Doryoku happy at center
 
-    "ああ、試験まで五日しかありません。今日は勉強しよう。"
-    "あれ？彼女が送信しました。。。えっと、「今晩シメキリの家でパーティーがあるよ。私はちょっと行きたいん、一緒に行きましょう」"
+    "ああ、試験まで五日しかない。今日は勉強しよう。"
+    "あれ？彼女が送信した。。。えっと、「今晩シメキリの家でパーティーがあるよ。私はちょっと行きたいん、一緒に行きましょう」"
     menu:
 
         "楽しそう、行こう！":
@@ -128,7 +128,7 @@ label day2:
 
 
     d "私は決めた。今日は絶対に勉強しようつもり。"
-    y "ええ？でも今晩、コンサートがあるそうだ。好きな歌手も来るので、一緒に行かない？"
+    y "ええ？でも今晩、コンサートがあるそうだ。好きな歌手も来るので、行かない？"
     menu:
         "行こう！":
             $ preparedness -= 15
@@ -181,7 +181,8 @@ label day4:
 
     show Doryoku happy at center
 
-    d "期末試験をもうパスした人がいるね、羨ましいなあ。外でちょっと騒音が聞こえる。何かあったか。だれがドアをノックしている"
+    d "期末試験をもうパスした人がいるね、羨ましいなあ。外でちょっと騒音が聞こえて、何かあったか。"
+    d "え、だれがドアをノックしている"
     pause 1
     show Shimekiri happy at right
     shimekiri "ねね、ユウワクと一緒にスマブラをしたい。超楽しいよ"
@@ -214,15 +215,15 @@ label day5:
     "今日、シメキリと一緒に勉強したい。どうしよう？"
 
     menu:
-        "シメキリさんと勉強する":
+        "シメキリさんと勉強しよう":
             $ preparedness += 30
             $ happiness -= 10
             jump studyRoom
 
-        "一人で勉強する":
+        "一人で勉強しよう":
             $ preparedness += 15*(happiness/100)
             $ happiness -= 10
-        d "（勉強している）"
+            d "（勉強している）"
             pause 1
             d "たくさん勉強した！よかったね" 
     jump day6
@@ -252,15 +253,15 @@ label end:
 
     d "緊張している。。今日は試験結果を出すの日だ"
     if ans:
-        if happiness < 15:
+        if happiness < 30:
             "受かった。。。でも友達がわかれたし、かなしくなったし、割に会いましたか？"
         else:
             "受かった！おめでとうございます。"
     else:
-        if happiness > 20:
+        if happiness > 50:
             "受からなかったが、学校以外にも色々なことをしました。"
         else:
-            "受からなかった"
+            "受からなかった。でも、学校以外のことは全部失敗しました"
     jump gameEnd
 
 
@@ -272,7 +273,7 @@ label party:
     show Yuuwaku happy at left
 
     default drank = False
-    d "わああ、人が多すぎだ。あそこにシメキリがいるね、お酒を飲んでみたい。"
+    d "わああ、人が多すぎ。あそこにシメキリがいるね、お酒を飲んでみたい。"
     menu:
         "お酒を飲もう":
             d "いい感じ！"
@@ -291,6 +292,7 @@ label party:
                 jump day2 
                 with fade
     d "楽しかった！そして疲れた。家に帰ろう"
+    jump day2
 
 
 label concert:
@@ -315,7 +317,7 @@ label room:
     with fade
     show Taihen happy at left
     show Doryoku happy at right
-    pause 5
+    pause 2
     t "このかっこいいチックトックリールを見よう"
     menu:
         "ううん、勉強しなきゃ":
@@ -323,8 +325,8 @@ label room:
             $ preparedness -= 5
         "うん、見せて":
             $ happiness -= 5
-            $ preparedness += 5
-    pause 2
+            $ preparedness += 2
+    pause 1
     t "このおもしろいチックトックリールを見よう"
     menu:
         "ううん、勉強しなきゃ":
@@ -332,8 +334,8 @@ label room:
             $ preparedness -= 5
         "うん、見せて":
             $ happiness -= 5
-            $ preparedness += 5
-    pause 2
+            $ preparedness += 2
+    pause 1
     t "この人気があるチックトックリールを見よう"
     menu:
         "ううん、勉強しなきゃ":
@@ -341,8 +343,10 @@ label room:
             $ preparedness -= 5
         "うん、見せて":
             $ happiness -= 5
-            $ preparedness += 5
-    pause 2
+            $ preparedness += 2
+    pause 1
+    t "今日は楽しかったぜ。そろそろ帰ろう"
+    d "あ、はい"
     jump day4
 
 label game:
@@ -356,11 +360,13 @@ label game:
     menu:
         "うん":
             d "もう一回！今度は絶対に勝ちます"
+            shimekiri "無理だよ、今度も私の勝"
             $ happiness += 10
             $ preparedness -= 10
         "ここで止める":
             d "勉強しなければいけない。みんな、またあした！"
             $ preparedness += 5
+            $ happiness -= 5
     jump day5
 
 label studyRoom:
@@ -373,6 +379,7 @@ label studyRoom:
 
     $ loops = 0
     label loop:
+        "シメキリと一緒に、なんとなく静かになった。とても集中できる"
         shimekiri "この問題を見て!"
         $ loops += 1
         menu:
@@ -398,7 +405,7 @@ label test:
         shiken "龜の読み方は？"
         menu:
             "知らない":
-                $ ans = True
+                $ ans = False
             "読めない":
                 $ ans = False
             "わからない":
@@ -407,15 +414,15 @@ label test:
                 $ ans = False
 
     elif preparedness < 60:
-        shiken "∫4x dx = 何"
+        shiken "挨拶の読み方は"
         menu:
-            "2x^2 + C":
+            "あいさつ":
                 $ ans = True
-            "x^2":
+            "あいせま":
                 $ ans = False
-            "x":
+            "けいさつ":
                 $ ans = False
-            "2x^2":
+            "えさ":
                 $ ans = False
     else:
         shiken "1 + 1 ＝ 何"
