@@ -14,10 +14,10 @@ default preparedness = 50
 default heartBroken = 0
 
 define d = Character('ドリョク', color="#c8ffc8")
-define y = Character('ユウワク', color="#c8ffc8")
-define t = Character('ガイヘン', color="#c8ffc8")
-define shimekiri = Character("シメキリ", color="#c8ffc8")
-define shiken = Character("シケン先生", color="#c8ffc8")
+define y = Character('ユウワク', color="#e4c1f9")
+define t = Character('ガイヘン', color="#d0f4de")
+define shimekiri = Character("シメキリ", color="#fcf6bd")
+define shiken = Character("シケン先生", color="#ff99c8")
 
 init:
     image bg home:
@@ -34,6 +34,9 @@ init:
         zoom 0.4
     image Shimekiri happy:
         "Shimekiri happy.png"
+        zoom 0.4
+    image Shiken happy:
+        "Shiken happy.png"
         zoom 0.4
 
 style days is text:
@@ -142,6 +145,7 @@ label day2:
                 show Yuuwaku  
                 y "分かったよ。じゃあ、私一人で行くね。後悔しないで"
                 "ああ、怒っているみたい。試験のあとでプレゼントを買おお。今一番大切なことは期末試験だ"
+            hide Yuuwaku
             d "（勉強している）"
             pause 1
             d "たくさん勉強した！よかったね"
@@ -162,6 +166,7 @@ label day3:
         "いいよ、勉強しよう！":
             jump room
         "今日はちょっと。。。(一人で勉強しよう)":
+            hide Taihen happy
             $ preparedness += 15
             $ happiness -= 15
             d "（勉強している）"
@@ -192,6 +197,7 @@ label day4:
             $ happiness += 10
             jump game
         "一人で勉強しよう":
+            hide Shimekiri
             $ preparedness += 15
             $ happiness -= 15
             d "（勉強している）"
@@ -250,13 +256,13 @@ label end:
     show Doryoku happy at center
 
     d "緊張している。。今日は試験結果を出すの日だ"
-    if (happiness > 50):
+    if (happiness > 40):
         show Yuuwaku happy at left
         show Taihen happy at right
         d "え、みんななんでここに来たの？"
         y "驚き！私たちは、ドリョクを応援するためにここにいます"
     if ans:
-        if happiness < 50:
+        if happiness < 40:
             d "合格した！今日はユウワクとちゃんと晩ご飯をたべよう。今電話をかける"
             "（電話中...）"
             d "あのさ、今日はーー" 
@@ -274,7 +280,7 @@ label end:
             d "みんなも、ずっと応援してありがとうね"
             "すごい！本当にHappy Endingだよ"
     else:
-        if happiness > 50:
+        if happiness > 40:
             d "合格しなかった。。。失敗した。。。"
             y "大丈夫大丈夫、来学期頑張ればきっと満点を取れるから。"
             t "そうだよ。ドリョクなら問題がない"
@@ -432,7 +438,7 @@ label studyRoom:
 
 label test:
     scene bg classroom with fade
-    show shiken at center
+    show Shiken happy at center
 
     shiken "期末試験を始まります"
     if preparedness < 30:
@@ -447,7 +453,7 @@ label test:
             "できない":
                 $ ans = False
 
-    elif preparedness < 60:
+    elif preparedness < 70:
         shiken "挨拶の読み方は"
         menu:
             "あいさつ":
